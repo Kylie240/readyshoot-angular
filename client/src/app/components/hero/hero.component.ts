@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { CAMERAS } from 'src/app/camera-data';
-import { Camera } from 'src/app/models/camera';
-import { Product2 } from 'src/app/models/product2';
-import { PRODUCTS } from '../../product-data';
-import { ApiService } from 'src/app/services/api.service';
-import { City } from 'src/app/models/city';
+import { CAMERAS } from '../../data/camera-data';
+import { Camera } from '../../models/camera';
+import { Product2 } from '../../models/product2';
+import { PRODUCTS } from '../../data/product-data';
+import { City } from '../../models/city';
+
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-hero',
+  standalone: true,
+  imports: [ButtonModule, CalendarModule, DropdownModule, FormsModule],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss']
 })
