@@ -1,0 +1,34 @@
+<app-breadcrumb [header]="header"></app-breadcrumb>
+<div class="container">
+    <div class="register-container">
+        <h4>Create an Account</h4>
+        <form action="">
+            <div>
+                <label htmlFor="email">First Name<span class="alert">*</span></label>
+                <input type="text" pInputText />
+            </div>
+            <div>
+                <label htmlFor="email">Last Name<span class="alert">*</span></label>
+                <input type="text" pInputText />
+            </div>
+            <div>
+                <label htmlFor="email">Username<span class="alert">*</span></label>
+                <input type="text" pInputText />
+            </div>
+            <div>
+                <label htmlFor="email">Email<span class="alert">*</span></label>
+                <input type="text" pInputText />
+            </div>
+            <div>
+                <label htmlFor="email">Password<span class="alert">*</span></label>
+                <input type="text" pInputText />
+            </div>
+            <p-button type="submit" label="Register"></p-button>
+        </form>
+        <div class="login">
+            <p>Have an account? </p>
+            <a routerLink="/login"><span class="alert">Login</span></a>
+        </div>
+    </div>
+</div>
+<app-booking-banner></app-booking-banner>

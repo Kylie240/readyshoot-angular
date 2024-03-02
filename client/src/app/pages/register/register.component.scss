@@ -1,0 +1,49 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 8rem;
+
+  .alert {
+    color: rgb(249 115 22);
+  }
+
+  h4 {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    text-align: center;
+    padding: 2rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      font-weight: 700;
+    }
+  }
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem;
+    font-size: 18px;
+    line-height: 1.75rem;
+    font-weight: 600;
+    gap: 0.5rem;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
