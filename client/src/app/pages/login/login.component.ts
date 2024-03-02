@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingBannerComponent } from '../../components/booking-banner/booking-banner.component';
-import { Button } from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [BookingBannerComponent, Button],
+  imports: [BookingBannerComponent, BreadcrumbComponent, ButtonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

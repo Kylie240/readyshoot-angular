@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { BookingBannerComponent } from '../../components/booking-banner/booking-banner.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [],
+  imports: [BookingBannerComponent, ButtonModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
