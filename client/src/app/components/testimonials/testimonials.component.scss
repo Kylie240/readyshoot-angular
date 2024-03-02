@@ -1,0 +1,112 @@
+.container {
+  padding: 11rem 0;
+
+  .test-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .test-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      h6 {
+        padding: 0.5rem;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        font-weight: 700;
+      }
+
+      h3 {
+        padding: 1rem;
+        font-size: 3rem;
+        line-height: 1;
+        font-weight: 700;
+      }
+
+      p {
+        color: rgb(87 83 78);
+        font-weight: 500;
+        font-size: 18px;
+        padding: 1rem;
+        max-width: 550px;
+      }
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+
+      .test-grid-item {
+        background: white;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        margin: 2rem;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 330px;
+        max-width: 600px;
+
+        .testimonial {
+          color: rgb(41, 37, 36);
+          font-weight: 600;
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
+
+        .test-grid-info {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: end;
+          margin-top: 1.5rem;
+
+          .test-grid-person {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+
+            img {
+              width: 80px;
+              height: 80px;
+              aspect-ratio: square;
+              object-fit: cover;
+              border-radius: 9999px;
+            }
+
+            h6 {
+              font-size: 1.25rem;
+              line-height: 1.75rem;
+              font-weight: 700;
+            }
+            p {
+              font-size: 1rem;
+            }
+          }
+
+          i {
+            font-size: 3.6rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+  .container {
+    .test-container {
+      .test-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+  }
+}
