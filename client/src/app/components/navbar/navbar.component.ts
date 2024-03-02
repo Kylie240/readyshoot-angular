@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 
+import { ButtonModule } from 'primeng/button';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [ButtonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
