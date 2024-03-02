@@ -1,0 +1,53 @@
+.container {
+  padding: 11rem 0;
+  background-color: white;
+
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    p-accordion {
+      max-width: 800px;
+    }
+
+    .faq-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      h6 {
+        padding: 0.5rem;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        font-weight: 700;
+      }
+
+      h3 {
+        padding: 1rem;
+        font-size: 3rem;
+        line-height: 1;
+        font-weight: 700;
+      }
+
+      p {
+        color: rgb(87 83 78);
+        font-weight: 500;
+        font-size: 18px;
+        padding: 1rem;
+        max-width: 550px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 992px) {
+  p-accordion {
+    margin: 0 2rem;
+  }
+}
