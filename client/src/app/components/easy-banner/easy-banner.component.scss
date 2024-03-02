@@ -1,0 +1,78 @@
+.easy-banner-container {
+  padding: 10px 8px 80px 8px;
+  justify-content: center;
+  align-items: center;
+
+  .easy-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+
+    .easy-banner-header {
+      text-align: center;
+
+      p {
+        padding: 0.5rem;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+      }
+
+      h5 {
+        padding: 0.5rem;
+        font-size: 3rem;
+        line-height: 1;
+        font-weight: 700;
+      }
+    }
+
+    .easy-banner-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 1.5rem;
+
+      .easy-banner-grid-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        span {
+          position: absolute;
+          background-color: rgb(249 115 22);
+          width: 100px;
+          height: 70px;
+          border-radius: 9999px;
+          opacity: 50%;
+          bottom: 9rem;
+          filter: blur(40px);
+        }
+
+        h6 {
+          font-size: 1.5rem;
+          line-height: 2rem;
+          font-weight: 700;
+          margin: 1rem 0;
+        }
+        p {
+          text-align: center;
+          width: 80%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .easy-banner-container {
+    .easy-banner {
+      .easy-banner-grid {
+        gap: 2rem;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+  }
+}
