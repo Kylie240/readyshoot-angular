@@ -1,0 +1,26 @@
+<app-breadcrumb [header]="header"></app-breadcrumb>
+<div class="container">
+    <div class="products-container">
+        <div class="filter-buttons">
+            <h4>Sort By Brand</h4>
+            <p-button *ngFor="let filter of filters" label={{filter}} [style]="{width: '160px'}"></p-button>
+            <h4>View Saved</h4>
+            <p-button label="Saved" [style]="{width: '160px'}"></p-button>
+        </div>
+        <div class="products-grid">
+            <p-card *ngFor="let camera of products" header={{camera.model}} subheader={{camera.brand}} [style]="{width: '330px', padding: '1.5rem'}" styleClass="p-card-shadow">
+                <ng-template pTemplate="header">
+                    <i class="pi pi-bookmark" style="font-size: 1.5rem"></i>
+                    <img alt={{camera.model}} src={{camera.image}}>
+                </ng-template>
+                <div>
+                    <p>${{camera.price}}</p>
+                    <p>per day</p>
+                </div>
+                <ng-template pTemplate="footer">
+                    <p-button label="RENT NOW" icon="pi pi-check" [style]="{width: '100%'}"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+</div>
