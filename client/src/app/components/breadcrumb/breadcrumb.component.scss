@@ -1,0 +1,22 @@
+.breadcrumb-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  position: relative;
+  align-items: center;
+
+  img {
+    width: 100%;
+    opacity: 20%;
+    filter: grayscale(0.8);
+  }
+
+  .banner-heading {
+    text-transform: uppercase;
+    position: absolute;
+    top: 30%;
+
+    font-size: 96px;
+    font-weight: bold;
+  }
+}
