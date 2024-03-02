@@ -7,20 +7,6 @@
             <h4>View Saved</h4>
             <p-button label="Saved" [style]="{width: '160px'}"></p-button>
         </div>
-        
-        <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
-            <ng-template pTemplate="header">
-                <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-            </ng-template>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-                quas!
-            </p>
-            <ng-template pTemplate="footer">
-                <p-button label="Save" icon="pi pi-check"></p-button>
-                <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-            </ng-template>
-        </p-card>
 
         <div class="products-grid">
             <p-card *ngFor="let camera of products" header={{camera.model}} subheader={{camera.brand}} [style]="{width: '330px', padding: '1.5rem'}" styleClass="p-card-shadow">

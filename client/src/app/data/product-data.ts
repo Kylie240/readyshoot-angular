@@ -1,6 +1,6 @@
 import { Product2 } from "../models/product2";
 
-export const PRODUCTS: any[] = [
+export const PRODUCTS: Product2[] = [
     {
         id:1,
         type:"Camcorder",

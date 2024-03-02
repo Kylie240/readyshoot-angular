@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ApiService } from '../../services/api.service';
+import { PRODUCTS } from '../../data/product-data';
 
 @Component({
   selector: 'app-products',
@@ -19,8 +20,7 @@ templateUrl: './products.component.html',
 export class ProductsComponent implements OnInit {
 
   header = "Our Products";
-  cameras : Camera[] = CAMERAS;
-  products: Product2[] = [];
+  products: Product2[] = PRODUCTS;
 
   filters = [
     "All",
@@ -32,18 +32,18 @@ export class ProductsComponent implements OnInit {
     "Blackmagic"
   ];
 
-  constructor(private apiService: ApiService) {}
+  constructor() {}
   
   ngOnInit() {
 
-    this.apiService.getAllProducts().subscribe(
-      (data : Product2[]) => {
-      this.products = data;
-      },
-      (error) => {
-        console.error('Error', error)
-      }
-    );
+    // this.apiService.getAllProducts().subscribe(
+    //   (data : Product2[]) => {
+    //   this.products = data;
+    //   },
+    //   (error) => {
+    //     console.error('Error', error)
+    //   }
+    // );
   }
 
 };
