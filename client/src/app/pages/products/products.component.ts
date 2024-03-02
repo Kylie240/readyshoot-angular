@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CAMERAS } from '../../data/camera-data';
-import { Camera } from '../../models/camera';
 import { Product2 } from '../../models/product2';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { CommonModule } from '@angular/common';
@@ -20,7 +18,7 @@ templateUrl: './products.component.html',
 export class ProductsComponent implements OnInit {
 
   header = "Our Products";
-  products: Product2[] = PRODUCTS;
+  products: Product2[] = [];
 
   filters = [
     "All",
@@ -32,18 +30,18 @@ export class ProductsComponent implements OnInit {
     "Blackmagic"
   ];
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
   
   ngOnInit() {
 
-    // this.apiService.getAllProducts().subscribe(
-    //   (data : Product2[]) => {
-    //   this.products = data;
-    //   },
-    //   (error) => {
-    //     console.error('Error', error)
-    //   }
-    // );
+    this.apiService.getAllProducts().subscribe(
+      (data : Product2[]) => {
+      this.products = data;
+      },
+      (error) => {
+        console.error('Error', error)
+      }
+    );
   }
 
 };

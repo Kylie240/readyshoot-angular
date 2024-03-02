@@ -13,7 +13,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   public getAllProducts() : Observable<any> {
-    const url = `${this.url}/products`;
+    const url = `${this.url} /products`;
     return this.http.get(url);
   }
 };
