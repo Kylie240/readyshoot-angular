@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CAMERAS } from '../../data/camera-data';
+import { Camera } from '../../models/camera';
+import { Product2 } from '../../models/product2';
 
 @Component({
   selector: 'app-products',
@@ -27,5 +30,5 @@ export class ProductsComponent implements OnInit {
   
   ngOnInit() {
   }
-  
+
 };
