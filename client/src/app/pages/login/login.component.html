@@ -1,0 +1,22 @@
+<app-breadcrumb [header]="header"></app-breadcrumb>
+<div class="container">
+    <div class="login-container">
+        <h4>Login To Your Account</h4>
+        <form action="#">
+            <div>
+                <label htmlFor="email">Email<span class="alert">*</span></label>
+                <input name="email" type="email" [(ngModel)]="loginObj.email" pInputText />
+            </div>
+            <div>
+                <label htmlFor="email">Password<span class="alert">*</span></label>
+                <input name="password" type="password" [(ngModel)]="loginObj.password" pInputText />
+            </div>
+            <p-button type="submit" label="Sign In" (click)="onLogin()"></p-button>
+        </form>
+        <div class="register">
+            <p>Don't have an account? </p>
+            <a routerLink="/register"><span class="alert"> Create one now</span></a>
+        </div>
+    </div>
+</div>
+<app-booking-banner></app-booking-banner>
