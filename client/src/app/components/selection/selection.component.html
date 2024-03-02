@@ -1,0 +1,65 @@
+<p>selection works!</p>
+<div class="container">
+    <div class="selection-container">
+        <div class="selection-header">
+            <h6>Browse Our Selection of</h6>
+            <h3>Quality Rental Cameras</h3>
+            <p>Choose from a variety of our amazing cameras to rent for your next photoshoot or video gig</p>
+        </div>
+        <div class="selection-content">
+            <div class="selection-content-buttons">
+                <p-button camera="camera" (onClick)="handleSelect(camera)" *ngFor="let camera of cameras" label='{{camera.brand}} {{camera.name}}' [style]="{width: '220px'}"></p-button>
+            </div>
+            <div class="selection-content-right">
+
+                <div class="selection-content-img">
+                    <h4>{{selectedCamera.name | uppercase}}</h4>
+                    <img src={{selectedCamera.img}} alt="">
+                </div>
+                
+                <div class="selection-content-table">
+                    <p-table [value]="[{selectedCamera}]" styleClass="p-datatable-gridlines" [tableStyle]="{'width': '300px'}">
+                        <!-- <ng-template pTemplate="caption">
+                            {{selectedCamera.brand}} {{selectedCamera.name}}
+                        </ng-template> -->
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th colspan="2">{{selectedCamera.price}} per day</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body">
+                            <tr>
+                                <td>Brand</td>
+                                <td>{{selectedCamera.brand}}</td>
+                            </tr>
+                            <tr>
+                                <td>Model</td>
+                                <td>{{selectedCamera.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Lens Compatability</td>
+                                <td>{{selectedCamera.lens}}</td>
+                            </tr>
+                            <tr>
+                                <td>File Size / Format</td>
+                                <td>{{selectedCamera.files}}</td>
+                            </tr>
+                            <tr>
+                                <td>Video Resolution</td>
+                                <td>{{selectedCamera.video}}</td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>{{selectedCamera.weight}} lbs</td>
+                            </tr>
+                            <tr>
+                                <td>Dimensions</td>
+                                <td>{{selectedCamera.dimensions}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
