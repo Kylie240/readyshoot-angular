@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-products',
@@ -31,9 +32,18 @@ export class ProductsComponent implements OnInit {
     "Blackmagic"
   ];
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
   
   ngOnInit() {
+
+    this.apiService.getAllProducts().subscribe(
+      (data : Product2[]) => {
+      this.products = data;
+      },
+      (error) => {
+        console.error('Error', error)
+      }
+    );
   }
 
 };
