@@ -8,19 +8,19 @@
                 
                 <div class="hero-selection">
                     <label for="start-date"><i class="pi pi-calendar"></i> Product Type</label>
-                    <p-dropdown placeholder="Select" [options]="types" [(ngModel)]="selectedType" optionLabel="name"></p-dropdown>
+                    <p-dropdown placeholder="Select" [options]="types" [(ngModel)]="selectedType" optionLabel="name" [ngModelOptions]="{standalone: true}"></p-dropdown>
                 </div>
                 <div class="hero-selection">
                     <label for="end-date"><i class="pi pi-calendar"></i> Pick Up</label>
-                    <p-dropdown placeholder="Select" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" optionValue="code"></p-dropdown>
+                    <p-dropdown placeholder="Select" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" optionValue="code" [ngModelOptions]="{standalone: true}"></p-dropdown>
                 </div>
                 <div class="hero-selection">
                     <label for="startDate"><i class="pi pi-calendar"></i> Start Date</label>
-                    <p-calendar [(ngModel)]="startDate" name="startDate"></p-calendar>
+                    <p-calendar [(ngModel)]="startDate" name="startDate" [ngModelOptions]="{standalone: true}"></p-calendar>
                 </div>
                 <div class="hero-selection">
                     <label for="endDate"><i class="pi pi-calendar"></i> End Date</label>
-                    <p-calendar [(ngModel)]="endDate" name="endDate"></p-calendar>
+                    <p-calendar [(ngModel)]="endDate" name="endDate" [ngModelOptions]="{standalone: true}"></p-calendar>
                 </div>
                 <p-button label="Search Now" type="submit"></p-button>
                 

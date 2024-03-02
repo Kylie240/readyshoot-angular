@@ -6,11 +6,12 @@ import { SelectionComponent } from '../../components/selection/selection.compone
 import { BrandsComponent } from '../../components/brands/brands.component';
 import { TestimonialsComponent } from '../../components/testimonials/testimonials.component';
 import { FaqComponent } from '../../components/faq/faq.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeroComponent, FaqComponent,TestimonialsComponent, EasyBannerComponent, SaveBannerComponent, SelectionComponent, BrandsComponent],
+  imports: [HeroComponent, ButtonModule, FaqComponent,TestimonialsComponent, EasyBannerComponent, SaveBannerComponent, SelectionComponent, BrandsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
