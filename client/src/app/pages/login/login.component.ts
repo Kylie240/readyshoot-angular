@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingBannerComponent } from '../../components/booking-banner/booking-banner.component';
 import { ButtonModule } from 'primeng/button';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [BookingBannerComponent, BreadcrumbComponent, ButtonModule, FormsModule],
+  imports: [BookingBannerComponent, RouterModule, BreadcrumbComponent, ButtonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -20,15 +21,21 @@ export class LoginComponent implements OnInit {
     this.loginObj = new Login();
   }
 
-  onLogin() {
-    this.http.post("http://localhost:8081/login", this.loginObj).subscribe((res:any) => {
-      if (res.result){
-        alert("Login successful")
+  onLogin(): void {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    }); 
+
+    this.http.post("http://localhost:8080/user/login", this.loginObj, { headers }).subscribe(
+      (response) => {
+        console.log(response);
+        // Handle successful login response
+      },
+      (error) => {
+        console.error(error);
+        // Handle error (e.g., show error message to the user)
       }
-      else {
-        alert(res.message)
-      }
-    })
+    )
   }
 
   ngOnInit(): void {

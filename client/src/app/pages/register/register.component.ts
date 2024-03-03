@@ -3,11 +3,12 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { BookingBannerComponent } from '../../components/booking-banner/booking-banner.component';
 
 import { ButtonModule } from 'primeng/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [BookingBannerComponent, BreadcrumbComponent, ButtonModule],
+  imports: [BookingBannerComponent, RouterModule, BreadcrumbComponent, ButtonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
