@@ -25,30 +25,35 @@ app.get("/products", (req,res) => {
 
 //users
 app.post("/user/register", (req,res) => {
-    const user = req.body;
-    const query =  "SELECT firstName, lastName, email, username, password FROM users where email=?";
+    const {firstName, lastName, email, username, password} = req.body;
+    const query =  "INSERT INTO users (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)";
+    const values = [firstName, lastName, email, username, password];
 
-    db.query(query, [user.email], (err, results) => {
-        res.status(200).json({ success: 'help' });
-        if(!err) {
-            res.status(200).json({ success: 'help' });
-            if(results.length <= 0){
-                query = 'INSERT into users (firstName,lastName,email,username,password) values(?,?,?,?,?)'
-                db.query(query,[user.firstname,user.lastname,user.email,user.username,user.password],(err,data) => {
-                    if(!err){
-                        return res.status(200).json({message: "Successfully Registered"})
-                    }
-                    else{
-                        return res.status(500).json(err);
-                    }
-                })
-            } 
-            else{
-                return res.status(400).json({message: "Email already exists."})
-            }
-        }
-        return res.json("Error");
-    })
+    const emailQuery = 'SELECT COUNT(*) AS count FROM users WHERE email = ?';
+    db.query(emailQuery, [email], (error, results) => {
+    if (error) {
+      console.error('Error checking email:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    const emailExists = results[0].count > 0;
+
+    if (emailExists) {
+        res.status(400).json({ error: 'Email already exists' });
+      } else {
+        const insertUserQuery = 'INSERT INTO users (FirstName, LastName, Email, Username, Password) VALUES (?, ?, ?, ?, ?)';
+        db.query(insertUserQuery, [firstName, lastName, email, username, password], (insertError) => {
+          if (insertError) {
+            console.error('Error inserting user:', insertError);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+          }
+  
+          res.status(200).json({ message: 'User registered successfully' });
+        });
+      }
+    });
 })
 
 app.post('/user/login', (req, res) => {

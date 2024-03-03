@@ -28,12 +28,10 @@ export class LoginComponent implements OnInit {
 
     this.http.post("http://localhost:8080/user/login", this.loginObj, { headers }).subscribe(
       (response) => {
-        console.log(response);
-        // Handle successful login response
+        alert(response);
       },
       (error) => {
         console.error(error);
-        // Handle error (e.g., show error message to the user)
       }
     )
   }
