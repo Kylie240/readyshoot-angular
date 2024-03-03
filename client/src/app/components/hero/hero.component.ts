@@ -10,6 +10,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-hero',
@@ -40,6 +41,14 @@ export class HeroComponent implements OnInit {
     {name: 'Lighting', code: 'li'},
     {name: 'Accesories', code: 'ac'}
   ];
+
+  // types = [
+  //   "Camcorder",
+  //   "Action Camera",
+  //   "Lens",
+  //   "DSLR",
+  //   "Mirrorless"
+  // ]
 
   selectedCity = "";
   selectedType = "";
