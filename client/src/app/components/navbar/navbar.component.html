@@ -1,24 +1,40 @@
 <nav>
     <div class="nav-container">
-        <div class="logo">
-            <div class="logo-top">
-                <p>EASY</p>
-                <i class="pi pi-camera" style="font-size: 1.5rem"></i>
+        <a class="logo-link" routerLink="/">
+            <div class="logo">
+                <div class="logo-top">
+                    <p>EASY</p>
+                    <i class="pi pi-camera" style="font-size: 1.5rem"></i>
+                </div>
+                <h6>SHOOT</h6>
             </div>
-            <h6>SHOOT</h6>
-        </div>
-        <ul class="nav-section nav-links">
+        </a>
+        <ul class="nav-section nav-links desktop">
             <li><a routerLink="/">Home</a></li>
             <li><a routerLink="/about">About</a></li>
             <li><a routerLink="/products">Our Cameras</a></li>
             <li><a routerLink="/contact">Contact</a></li>
         </ul>
-        <ul class="nav-section nav-login">
-            <li><a routerLink="/login">Sign In</a></li>
-            <li>
-                <a routerLink="/register"><p-button label="Register"></p-button></a>
-            </li>
+        <ul class="nav-section">
+            <div class="desktop">
+                <li><a routerLink="/login">Sign In</a></li>
+                <li>
+                    <a routerLink="/register"><p-button label="Register"></p-button></a>
+                </li>
+            </div>
+            <div class="mobile-menu" (click)="toggleMobileMenu()">
+                <i class="pi pi-bars"></i>
+            </div>
         </ul>
     </div>
+    
+    <ul class="nav-links-mobile" *ngIf="isMobileMenuOpen">
+        <li><a routerLink="/" (click)="closeMobileMenu()">Home</a></li>
+        <li><a routerLink="/about" (click)="closeMobileMenu()">About</a></li>
+        <li><a routerLink="/products" (click)="closeMobileMenu()">Our Cameras</a></li>
+        <li><a routerLink="/contact" (click)="closeMobileMenu()">Contact</a></li>
+        <li><a routerLink="/login" (click)="closeMobileMenu()">Sign In</a></li>
+        <li><a routerLink="/register" (click)="closeMobileMenu()">Register</a></li>
+    </ul>
 </nav>
 
