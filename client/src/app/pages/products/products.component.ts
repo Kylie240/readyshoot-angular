@@ -12,7 +12,7 @@ import { PRODUCTS } from '../../data/product-data';
   selector: 'app-products',
   standalone: true,
   imports: [BreadcrumbComponent, ButtonModule, CardModule, CommonModule],
-templateUrl: './products.component.html',
+  templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent implements OnInit {

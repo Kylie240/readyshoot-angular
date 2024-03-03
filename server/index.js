@@ -21,6 +21,8 @@ app.get("/products", (req,res) => {
     })
 })
 
+//users
+
 
 app.listen(8080, () => {
     console.log("listening..")
