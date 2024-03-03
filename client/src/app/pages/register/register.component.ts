@@ -3,7 +3,7 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { BookingBannerComponent } from '../../components/booking-banner/booking-banner.component';
 
 import { ButtonModule } from 'primeng/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +18,7 @@ export class RegisterComponent {
 
   registerObj: Register;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router) { 
     this.registerObj = new Register();
   }
 
@@ -28,8 +28,12 @@ export class RegisterComponent {
     }); 
 
     this.http.post("http://localhost:8080/user/register", this.registerObj, { headers }).subscribe(
-      (response) => {
-        alert(response);
+      (response: any) => {
+      if (response && response.success) {
+        alert(response.success);
+        this.router.navigateByUrl('/login');
+      }
+      else alert(response.error)
       },
       (error) => {
         console.error(error);

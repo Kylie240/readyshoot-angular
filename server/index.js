@@ -60,6 +60,12 @@ app.get("/products/search", (req,res) => {
 //users
 app.post("/user/register", (req,res) => {
     const {firstName, lastName, email, username, password} = req.body;
+
+    if (!firstName || !lastName || !email || !username || !password) {
+      res.json({ error: 'All fields must be filled' });
+      return;
+    }
+
     const query =  "INSERT INTO customers (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)";
     const values = [firstName, lastName, email, username, password];
 
@@ -74,17 +80,17 @@ app.post("/user/register", (req,res) => {
     const emailExists = results[0].count > 0;
 
     if (emailExists) {
-        res.status(400).json({ error: 'Email already exists' });
+        res.json({ error: 'Email already exists' });
       } else {
         const insertUserQuery = 'INSERT INTO customers (FirstName, LastName, Email, Username, Password) VALUES (?, ?, ?, ?, ?)';
         connection.query(insertUserQuery, [firstName, lastName, email, username, password], (insertError) => {
           if (insertError) {
             console.error('Error inserting user:', insertError);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.json({ error: 'Internal Server Error' });
             return;
           }
   
-          res.status(200).json({ message: 'User registered successfully' });
+          res.json({ success: 'User registered successfully. You can now login.' });
         });
       }
     });
