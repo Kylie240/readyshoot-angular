@@ -36,9 +36,9 @@ app.get("/products/featured", (req,res) => {
 })
 
 app.get("/products/search", (req,res) => {
-    const { type, startDate, endDate } = req.query;
+    const { type, startDate, endDate } = req.body;
 
-    let sql = "SELECT * FROM Products";
+    let query = "SELECT * FROM Products";
     const params = [];
     
     if (type) {
@@ -47,14 +47,19 @@ app.get("/products/search", (req,res) => {
     }
 
     if (startDate && endDate) {
-      query += ' AND product_id NOT IN (SELECT product_id FROM rentals WHERE ? <= endDate AND ? >= startDate)';
+      query += ' AND id NOT IN (SELECT product_id FROM rentals WHERE ? <= end_date AND ? >= start_date)';
       params.push(endDate, startDate);
     }
 
-    connection.query(sql, (err, data) => {
-        if(err) return res.json("Error");
-        return res.json(data);
-    })
+    connection.query(query, params, (err, data) => {
+      if (err) {
+          console.error(err);
+          return res.status(500).json({ error: "Internal Server Error" });
+      }
+
+      return res.json(data);
+  });
+
 })
 
 //users
