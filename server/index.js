@@ -24,7 +24,6 @@ app.get("/products", (req,res) => {
         if(err) return res.json("Error");
         return res.json(data);
     })
-    connection.end()
 })
 
 app.get("/products/featured", (req,res) => {
@@ -61,10 +60,10 @@ app.get("/products/search", (req,res) => {
 //users
 app.post("/user/register", (req,res) => {
     const {firstName, lastName, email, username, password} = req.body;
-    const query =  "INSERT INTO users (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)";
+    const query =  "INSERT INTO customers (firstName, lastName, email, username, password) VALUES (?, ?, ?, ?, ?)";
     const values = [firstName, lastName, email, username, password];
 
-    const emailQuery = 'SELECT COUNT(*) AS count FROM users WHERE email = ?';
+    const emailQuery = 'SELECT COUNT(*) AS count FROM customers WHERE email = ?';
     connection.query(emailQuery, [email], (error, results) => {
     if (error) {
       console.error('Error checking email:', error);
@@ -77,7 +76,7 @@ app.post("/user/register", (req,res) => {
     if (emailExists) {
         res.status(400).json({ error: 'Email already exists' });
       } else {
-        const insertUserQuery = 'INSERT INTO users (FirstName, LastName, Email, Username, Password) VALUES (?, ?, ?, ?, ?)';
+        const insertUserQuery = 'INSERT INTO customers (FirstName, LastName, Email, Username, Password) VALUES (?, ?, ?, ?, ?)';
         connection.query(insertUserQuery, [firstName, lastName, email, username, password], (insertError) => {
           if (insertError) {
             console.error('Error inserting user:', insertError);
@@ -94,10 +93,10 @@ app.post("/user/register", (req,res) => {
 app.post('/user/login', (req, res) => {
     const {email, password} = req.body;
     if (!email || !password) {
-      return res.status(400).json({ error: 'Username and password are required.' });
+      return res.status(400).json({ error: 'Email and password are required.' });
     }
   
-    connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], (err, results) => {
+    connection.query('SELECT * FROM customers WHERE email = ? AND password = ?', [email, password], (err, results) => {
       if (err) {
         console.error('Error querying the database:', err);
         return res.status(500).json({ error: 'Internal server error.' });
