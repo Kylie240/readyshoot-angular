@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-hero',
@@ -45,7 +46,7 @@ export class HeroComponent implements OnInit {
   endDate = "";
   startDate = "";
 
-  constructor() {  }
+  constructor(private http: HttpClient) {  }
 
   ngOnInit(): void {
   }

@@ -16,4 +16,9 @@ export class ApiService {
     const url = `${this.url}/products`;
     return this.http.get(url);
   }
+
+  public getFeatured() : Observable<any> {
+    const url = `${this.url}/products`;
+    return this.http.get(url);
+  }
 };

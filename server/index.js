@@ -23,6 +23,14 @@ app.get("/products", (req,res) => {
     })
 })
 
+app.get("/products/featured", (req,res) => {
+    const sql =  "SELECT * FROM products LIMIT 8";
+    db.query(sql, (err, data) => {
+        if(err) return res.json("Error");
+        return res.json(data);
+    })
+})
+
 //users
 app.post("/user/register", (req,res) => {
     const {firstName, lastName, email, username, password} = req.body;
