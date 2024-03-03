@@ -93,19 +93,19 @@ app.post("/user/register", (req,res) => {
 app.post('/user/login', (req, res) => {
     const {email, password} = req.body;
     if (!email || !password) {
-      return res.status(400).json({ error: 'Email and password are required.' });
+      return res.json({ error: 'Email and password are required.' });
     }
   
     connection.query('SELECT * FROM customers WHERE email = ? AND password = ?', [email, password], (err, results) => {
       if (err) {
         console.error('Error querying the database:', err);
-        return res.status(500).json({ error: 'Internal server error.' });
+        return res.json({ error: 'Internal server error.' });
       }
   
       if (results.length > 0) {
-        return res.status(200).json({ success: 'Login successful!' });
+        return res.json({ success: 'Login successful!' });
       } else {
-        return res.status(401).json({ error: 'Invalid username or password.' });
+        return res.json({ error: 'Invalid username or password.' });
       }
     });
   });

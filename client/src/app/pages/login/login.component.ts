@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   loginObj: Login;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router) { 
     this.loginObj = new Login();
   }
 
@@ -27,8 +27,14 @@ export class LoginComponent implements OnInit {
     }); 
 
     this.http.post("http://localhost:8080/user/login", this.loginObj, { headers }).subscribe(
-      (response) => {
-        alert(response);
+      (response: any) => {
+        console.log(response);
+
+      if (response && response.success) {
+        alert(response.success);
+        this.router.navigateByUrl('/products');
+      }
+      else alert(response.error)
       },
       (error) => {
         console.error(error);
