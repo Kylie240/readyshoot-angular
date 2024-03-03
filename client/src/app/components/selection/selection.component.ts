@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Camera } from '../../models/camera';
-import { CAMERAS } from '../../data/camera-data';
 import { CommonModule } from '@angular/common';
 
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { Product2 } from '../../models/product2';
+import { PRODUCTS } from '../../data/product-data';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-selection',
@@ -15,16 +17,27 @@ import { TableModule } from 'primeng/table';
 })
 export class SelectionComponent {
 
-  cameras: Camera[] = CAMERAS;
-  selectedCamera: Camera = this.cameras[0];
+  products: Product2[] = [];
+  selectedProduct: Product2 = PRODUCTS[0];
 
-  constructor() { }
+  constructor(private apiService: ApiService) {
+   }
 
   ngOnInit(): void {
-  }
 
-  handleSelect(camera: any){
-    this.selectedCamera = camera;
-  }
+    this.apiService.getFeatured().subscribe(
+      (data : Product2[]) => {
+        this.products = data;
+        this.selectedProduct = this.products[0];
+      },
+      (error) => {
+        console.error('Error', error)
+      }
+    );
+  } 
 
+
+  handleSelect(product: Product2): void{
+    this.selectedProduct = product;
+  }
 }

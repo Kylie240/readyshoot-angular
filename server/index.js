@@ -7,25 +7,52 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "readyshoot"
-})
+const dbConfig = {
+  host: "localhost",
+  user: "root",
+  password: "password",
+  database: "readyshoot"
+};
+
+const connection = mysql.createConnection(dbConfig);
 
 //products
 app.get("/products", (req,res) => {
     const sql =  "SELECT * FROM products";
-    db.query(sql, (err, data) => {
+
+    connection.query(sql, (err, data) => {
+        if(err) return res.json("Error");
+        return res.json(data);
+    })
+    connection.end()
+})
+
+app.get("/products/featured", (req,res) => {
+    const sql = "SELECT * FROM products limit 8";
+
+    connection.query(sql, (err, data) => {
         if(err) return res.json("Error");
         return res.json(data);
     })
 })
 
-app.get("/products/featured", (req,res) => {
-    const sql =  "SELECT * FROM products LIMIT 8";
-    db.query(sql, (err, data) => {
+app.get("/products/search", (req,res) => {
+    const { type, startDate, endDate } = req.query;
+
+    let sql = "SELECT * FROM Products";
+    const params = [];
+    
+    if (type) {
+      query += ' WHERE type = ?';
+      params.push(type);
+    }
+
+    if (startDate && endDate) {
+      query += ' AND product_id NOT IN (SELECT product_id FROM rentals WHERE ? <= endDate AND ? >= startDate)';
+      params.push(endDate, startDate);
+    }
+
+    connection.query(sql, (err, data) => {
         if(err) return res.json("Error");
         return res.json(data);
     })
@@ -38,7 +65,7 @@ app.post("/user/register", (req,res) => {
     const values = [firstName, lastName, email, username, password];
 
     const emailQuery = 'SELECT COUNT(*) AS count FROM users WHERE email = ?';
-    db.query(emailQuery, [email], (error, results) => {
+    connection.query(emailQuery, [email], (error, results) => {
     if (error) {
       console.error('Error checking email:', error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -51,7 +78,7 @@ app.post("/user/register", (req,res) => {
         res.status(400).json({ error: 'Email already exists' });
       } else {
         const insertUserQuery = 'INSERT INTO users (FirstName, LastName, Email, Username, Password) VALUES (?, ?, ?, ?, ?)';
-        db.query(insertUserQuery, [firstName, lastName, email, username, password], (insertError) => {
+        connection.query(insertUserQuery, [firstName, lastName, email, username, password], (insertError) => {
           if (insertError) {
             console.error('Error inserting user:', insertError);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -70,7 +97,7 @@ app.post('/user/login', (req, res) => {
       return res.status(400).json({ error: 'Username and password are required.' });
     }
   
-    db.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], (err, results) => {
+    connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], (err, results) => {
       if (err) {
         console.error('Error querying the database:', err);
         return res.status(500).json({ error: 'Internal server error.' });
