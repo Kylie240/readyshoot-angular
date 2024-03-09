@@ -1,10 +1,11 @@
 export interface Product {
     id: number;
-        name: string;
-        brand: string;
-        files: string;
-        weight: number;
-        features: string[];
-        price: number;
-        image: string;
+    brand: string;
+    model: string;
+    type: string;
+    description: string;
+    price: string;
+    weight: string;
+    image: string;
+    resolution: string;
 }

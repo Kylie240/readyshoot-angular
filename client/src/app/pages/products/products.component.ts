@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ApiService } from '../../services/api.service';
 import { PRODUCTS } from '../../data/product-data';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,7 @@ import { PRODUCTS } from '../../data/product-data';
 export class ProductsComponent implements OnInit {
 
   header = "Our Products";
-  products: Product2[] = [];
+  products: Product[] = [];
 
   filters = [
     "All",
@@ -33,15 +34,14 @@ export class ProductsComponent implements OnInit {
   constructor(private apiService: ApiService) {}
   
   ngOnInit() {
+    this.apiService
+      .getAllProducts()
+      .subscribe((result: Product[]) => (this.products = result))
+  }
 
-    this.apiService.getAllProducts().subscribe(
-      (data : Product2[]) => {
-      this.products = data;
-      },
-      (error) => {
-        console.error('Error', error)
-      }
-    );
+  handleFilter(){
+    console.log("test");
+    
   }
 
 };

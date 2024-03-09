@@ -47,8 +47,13 @@ app.get("/products/search", (req,res) => {
     }
 
     if (startDate && endDate) {
-      query += ' AND id NOT IN (SELECT product_id FROM rentals WHERE ? <= end_date AND ? >= start_date)';
-      params.push(endDate, startDate);
+      if (type) {
+        query += ' AND id NOT IN (SELECT product_id FROM rentals WHERE ? <= end_date AND ? >= start_date)';
+        params.push(endDate, startDate);
+      } else {
+        query += ' WHERE id NOT IN (SELECT product_id FROM rentals WHERE ? <= end_date AND ? >= start_date)';
+        params.push(endDate, startDate);
+      }
     }
 
     connection.query(query, params, (err, data) => {
@@ -78,7 +83,6 @@ app.post("/user/register", (req,res) => {
     connection.query(emailQuery, [email], (error, results) => {
     if (error) {
       console.error('Error checking email:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
       return;
     }
 

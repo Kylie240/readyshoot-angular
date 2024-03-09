@@ -3,7 +3,7 @@
     <div class="products-container">
         <div class="filter-buttons">
             <h4>Sort By Brand</h4>
-            <p-button *ngFor="let filter of filters" label={{filter}} [style]="{width: '160px'}"></p-button>
+            <p-button *ngFor="let filter of filters" label={{filter}} [style]="{width: '160px'}" (onClick)="handleFilter()"></p-button>
             <h4>View Saved</h4>
             <p-button label="Saved" [style]="{width: '160px'}"></p-button>
         </div>

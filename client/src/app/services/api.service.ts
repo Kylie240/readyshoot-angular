@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class ApiService {
 
   private url = 'http://localhost:8080';
+  private url2 = 'https://localhost:7057/api';
 
   constructor(private http: HttpClient) { }
 
-  public getAllProducts() : Observable<any> {
-    const url = `${this.url}/products`;
-    return this.http.get(url);
+  public getAllProducts() : Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.url2}/Product`);
   }
 
   public getFeatured() : Observable<any> {
