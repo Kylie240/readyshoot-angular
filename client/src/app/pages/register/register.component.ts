@@ -27,14 +27,14 @@ export class RegisterComponent {
       'Content-Type': 'application/json',
     }); 
 
-    this.http.post("https://localhost:7057/api/Customer", this.registerObj, { headers }).subscribe(
+    this.http.post("https://localhost:7057/Customer/register", this.registerObj, { headers }).subscribe(
       (response: any) => 
       {
-      if (response && response.success) {
-        alert(response.success);
-        this.router.navigateByUrl('/login');
-      }
-      else alert(response.error)
+        if (response && response.success) {
+          alert(response.success);
+          this.router.navigateByUrl('/login');
+        }
+        else { alert(response.error || "An unknown error occurred.")}
       },
       (error) => {
         console.error(error);

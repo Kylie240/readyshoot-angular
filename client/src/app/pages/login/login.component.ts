@@ -26,15 +26,15 @@ export class LoginComponent implements OnInit {
       'Content-Type': 'application/json',
     }); 
 
-    this.http.post("http://localhost:8080/user/login", this.loginObj, { headers }).subscribe(
+    this.http.post("https://localhost:7057/Customer/login", this.loginObj, { headers }).subscribe(
       (response: any) => {
-        console.log(response);
-
       if (response && response.success) {
         alert(response.success);
         this.router.navigateByUrl('/products');
       }
-      else alert(response.error)
+      if (response && response.error) {
+        alert(response.error);
+      }
       },
       (error) => {
         console.error(error);
