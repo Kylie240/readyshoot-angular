@@ -22,13 +22,14 @@ export class RegisterComponent {
     this.registerObj = new Register();
   }
 
-  onReg(): void {
+  onRegister(): void {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     }); 
 
-    this.http.post("http://localhost:8080/user/register", this.registerObj, { headers }).subscribe(
-      (response: any) => {
+    this.http.post("https://localhost:7057/api/Customer", this.registerObj, { headers }).subscribe(
+      (response: any) => 
+      {
       if (response && response.success) {
         alert(response.success);
         this.router.navigateByUrl('/login');
@@ -48,14 +49,14 @@ export class RegisterComponent {
 }
 
 export class Register {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   username: string;
   email: string;
   password: string;
   constructor(){
-    this.firstName = "";
-    this.lastName = "";
+    this.firstname = "";
+    this.lastname = "";
     this.username = "";
     this.password = "";
     this.email = "";

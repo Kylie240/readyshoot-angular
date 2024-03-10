@@ -5,11 +5,11 @@
         <form action="#">
             <div>
                 <label htmlFor="firstName">First Name<span class="alert">*</span></label>
-                <input name="firstName" type="text" [(ngModel)]="registerObj.firstName" pInputText />
+                <input name="firstName" type="text" [(ngModel)]="registerObj.firstname" pInputText />
             </div>
             <div>
                 <label htmlFor="lastName">Last Name<span class="alert">*</span></label>
-                <input name="text" type="test" [(ngModel)]="registerObj.lastName" pInputText />
+                <input name="text" type="test" [(ngModel)]="registerObj.lastname" pInputText />
             </div>
             <div>
                 <label htmlFor="username">Username<span class="alert">*</span></label>
@@ -24,7 +24,7 @@
                 <input name="email" type="email" [(ngModel)]="registerObj.email" pInputText />
             </div>
 
-            <p-button type="submit" label="Register" (click)="onReg()"></p-button>
+            <p-button type="button" label="Register" (click)="onRegister()"></p-button>
         </form>
         <div class="login">
             <p>Have an account? </p>
